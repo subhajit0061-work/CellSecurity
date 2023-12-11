@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Contains policies used from the API-->
+<device-admin
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-policies>
+        <uses-permission android:name="android.permission.BIND_DEVICE_ADMIN" />
+        <uses-permission android:name="android.permission.MANAGE_DEVICE_ADMINS" />
+        <watch-login/>
+        <wipe-data />
+        <limit-password />
+        <disable-application />
+    </uses-policies>
+</device-admin>

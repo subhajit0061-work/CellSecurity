@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "17891551483",
+    "project_id": "cellsecurity-6fe3c",
+    "storage_bucket": "cellsecurity-6fe3c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:17891551483:android:17a1e47acd0ab9bca7285e",
+        "android_client_info": {
+          "package_name": "com.adretsoftwares.cellsecuritycare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "17891551483-2ic7uqrl9i3ngi244vl4fglnlfrdu3ep.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgM9VXoZ42gcZtDP0duwB04GaEeek9bRI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "17891551483-2ic7uqrl9i3ngi244vl4fglnlfrdu3ep.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

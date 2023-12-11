@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Reference">
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Privacy Policy"
+        android:textSize="50dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.135"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"></TextView>
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView20">
+
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="387dp"
+            android:layout_height="wrap_content"
+            android:text="Privacy Policy for Cell Security\n
+
+Effective Date: 26/08/2023\n
+
+Your privacy is important to us. This Privacy Policy outlines the types of personal information we collect, how we use and protect it, and your choices regarding your information. By using our [App Name] mobile application,\n you consent to the practices described in this policy.\n
+
+1. Information We Collect:\n
+   - Personal Information: [List the types of personal information you collect, e.g., name, email, phone number, etc.]\n
+   - Device Information: [Describe the device information collected, e.g., device type, operating system, etc.]\n
+   - Usage Information: [Explain the usage data collected, e.g., app features used, interactions, etc.]\n
+
+2. How We Use Your Information:\n
+   - [Explain how you use the collected information, e.g., to provide and improve the app, communicate with users, etc.]\n
+   - [Mention any data sharing with third parties, if applicable.]\n
+
+3. Data Security:\n
+   - [Describe the security measures in place to protect user data, e.g., encryption, access controls, etc.]\n
+
+4. Your Choices:\n
+   - [Detail the options users have to control their data, such as opting out of data collection or changing settings.]\n
+
+5. Cookies and Tracking Technologies:\n
+   - [Explain if you use cookies or similar technologies and their purpose.]\n
+
+6. Children's Privacy:\n
+   - [Provide information about COPPA compliance and whether the app is intended for children.]\n
+
+7. Changes to Privacy Policy:\n
+   - [Explain how you will notify users about changes to the privacy policy.]\n
+
+8. Contact Us:\n
+   - If you have any questions or concerns about this Privacy Policy, please contact us at [Contact Email].\n
+
+Your use of [App Name] is subject to this Privacy Policy and our [Terms of Use] [Link to Terms of Use].\n
+
+[Link to Privacy Policy]\n
+
+[Link to Terms of Use]
+"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/whatsapp"
+            app:layout_constraintVertical_bias="0.04" />
+
+    </ScrollView>
+
+
+    <Button
+        android:id="@+id/close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:text="Close"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+      />
+</androidx.constraintlayout.widget.ConstraintLayout>

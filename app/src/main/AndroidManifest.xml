@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+    <uses-permission
+        android:name="android.permission.REBOOT"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission
+        android:name="android.permission.SHUTDOWN"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission
+        android:name="android.permission.QUERY_ALL_PACKAGES"
+        tools:ignore="QueryAllPackagesPermission" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.flash" />
+
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.REORDER_TASKS" />
+    <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:name=".application.CellSecurity"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:requestLegacyExternalStorage="true"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.CellSecurityCare"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+        <service
+            android:name=".util.LocationService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HideApp"
+            android:exported="false" />
+        <activity
+            android:name=".showNotifications"
+            android:exported="false" />
+        <activity
+            android:name=".help"
+            android:exported="false" />
+        <activity
+            android:name=".terms_conditions"
+            android:exported="false" />
+        <activity
+            android:name=".privacy_policy"
+            android:exported="false" />
+        <activity
+            android:name=".ReferalReward"
+            android:exported="false" />
+        <activity
+            android:name=".Subscription"
+            android:exported="false" />
+        <activity
+            android:name=".FormatMobile"
+            android:exported="false" />
+        <activity
+            android:name=".ContactBackup"
+            android:exported="false" />
+
+        <service
+            android:name=".LocationTrackingService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <activity
+            android:name=".Reference"
+            android:exported="false" />
+        <activity
+            android:name=".EnterPin"
+            android:exported="false" />
+        <activity
+            android:name=".ContactMenu"
+            android:exported="false" />
+        <activity
+            android:name=".SOS"
+            android:exported="false" />
+        <activity
+            android:name=".MobileTracking"
+            android:exported="false" />
+        <activity
+            android:name=".SimChangeActivity"
+            android:exported="false" />
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+        <activity
+            android:name=".SettingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ReferralActivity"
+            android:exported="false" />
+        <activity
+            android:name=".WrongPinPassPatternMode"
+            android:exported="false" />
+        <activity
+            android:name=".CameraPreview"
+            android:exported="false" />
+        <activity
+            android:name=".StopUsbConnectionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".InsertNewSimActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SignupActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".PowerOffProtectionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EmergencyMode"
+            android:exported="false" />
+        <activity
+            android:name=".PocketThiefActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".BatteryIndicator"
+            android:exported="false" />
+
+        <service
+            android:name=".MessagingService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name=".SecurityService" />
+        <service
+            android:name=".CameraService"
+            android:foregroundServiceType="location|camera" /> <!-- <service -->
+        <!-- android:name=".CamService" -->
+        <!-- android:foregroundServiceType="camera|microphone" -->
+        <!-- android:stopWithTask="false" /> &lt;!&ndash; The loginWatch class extends BroadcastReceiver class &ndash;&gt; -->
+        <receiver
+            android:name=".loginWatch"
+            android:exported="true"
+            android:permission="android.permission.BIND_DEVICE_ADMIN"> <!-- This pevents other apps from misuing the receiver, ensures only system interacts with receiver -->
+            <!-- The meta-data contains the policies -->
+            <meta-data
+                android:name="android.app.device_admin"
+                android:resource="@xml/device_admin" />
+
+            <intent-filter>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+                <action android:name="android.app.action.ACTION_PASSWORD_FAILED" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".SimChangeReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.SIM_STATE_CHANGED" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".PocketService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <!--        <receiver-->
+        <!--            android:name=".BatteryReceiver"-->
+        <!--            android:enabled="true"-->
+        <!--            android:exported="true">-->
+        <!--            <intent-filter>-->
+        <!--                <action android:name="android.intent.action.BATTERY_LOW" />-->
+        <!--                <action android:name="android.intent.action.BATTERY_OKAY" />-->
+        <!--            </intent-filter>-->
+        <!--        </receiver>-->
+        <!--        <receiver-->
+        <!--            android:name=".DevAdminReceiver"-->
+        <!--            android:exported="false"-->
+        <!--            android:label="@string/app_name"-->
+        <!--            android:permission="android.permission.BIND_DEVICE_ADMIN">-->
+        <!--            <intent-filter>-->
+        <!--                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />-->
+        <!--            </intent-filter>-->
+
+        <!--            <meta-data-->
+        <!--                android:name="android.app.device_admin"-->
+        <!--                android:resource="@xml/device_admin" />-->
+        <!--        </receiver>-->
+        <receiver
+            android:name=".RebootReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.REBOOT" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".services.AppForegroundService"
+            android:enabled="true"
+            android:exported="true" />
+
+    </application>
+
+</manifest>
