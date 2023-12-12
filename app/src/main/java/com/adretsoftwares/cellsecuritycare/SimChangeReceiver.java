@@ -18,6 +18,7 @@ import android.util.Log;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.adretsoftwares.cellsecuritycare.common.SendSms;
 import com.adretsoftwares.cellsecuritycare.common.Constants;
