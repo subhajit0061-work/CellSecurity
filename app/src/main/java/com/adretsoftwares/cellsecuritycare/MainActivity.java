@@ -263,7 +263,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (checkLocationServices()) {
-                    startActivity(new Intent(MainActivity.this, MobileTracking.class));
+                    startActivity(new Intent(MainActivity.this, MobileTrackingActivity.class));
                 } else {
                     showLocationServicesDialog();
                 }

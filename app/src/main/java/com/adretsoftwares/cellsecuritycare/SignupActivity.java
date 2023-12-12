@@ -38,7 +38,7 @@ public class SignupActivity extends AppCompatActivity {
     static final String CHANNEL_NAME = "cellsecurity name";
     static final String CHANNEL_DESC = "cellsecurity desc";
     ProgressDialog progressBar;
-    static String SHARED_PREF_NAME = "com.adretsoftwares.cellsecuritycare";
+    public static String SHARED_PREF_NAME = "com.adretsoftwares.cellsecuritycare";
     SharedPreferences preferences;
     @SuppressLint("MissingInflatedId")
     @Override
