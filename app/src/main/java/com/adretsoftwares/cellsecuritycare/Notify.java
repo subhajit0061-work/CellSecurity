@@ -1,6 +1,8 @@
 package com.adretsoftwares.cellsecuritycare;
 
-public class Notify {
+import java.io.Serializable;
+
+public class Notify implements Serializable {
 
     private String imageUrl;
 

@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.adretsoftwares.cellsecuritycare.common.Constants;
 import com.adretsoftwares.cellsecuritycare.util.DownloadImage;
 import com.adretsoftwares.cellsecuritycare.util.UtilityAndConstant;
 import com.android.volley.toolbox.ImageLoader;
@@ -32,20 +33,20 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
 
     public static Boolean isWrongPasswordEnterd = false;
     //Imageloader to load image
-    private ImageLoader imageLoader,imageLoader2;
+    private ImageLoader imageLoader, imageLoader2;
     private final Context context;
-    private   String firstTimeEntry;
+    private String firstTimeEntry;
 
     //List to store all superheroes
     List<Notify> notify;
 
     //Constructor of this class
-    public CardAdapter(List<Notify> superHeroes, Context context){
+    public CardAdapter(List<Notify> superHeroes, Context context) {
         super();
         //Getting all superheroes
         this.notify = superHeroes;
         this.context = context;
-        firstTimeEntry =  UtilityAndConstant.getString("wrongPin");
+        firstTimeEntry = UtilityAndConstant.getString("wrongPin");
     }
 
     @Override
@@ -60,9 +61,9 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
 
 
-        Log.d("cardAdapter","the var is "+isWrongPasswordEnterd);
+        Log.d("cardAdapter", "the var is " + isWrongPasswordEnterd);
         //Getting the particular item from the list
-        Notify notify1 =  notify.get(position);
+        Notify notify1 = notify.get(position);
 
         //Loading image from url
         imageLoader = CustomVolleyRequest.getInstance(context).getImageLoader();
@@ -76,23 +77,22 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
         holder.textViewName.setText(notify1.getMessage());
         String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
-        holder.tvDate.setText(date+"  "+currentTime);
+        holder.tvDate.setText(date + "  " + currentTime);
         String cordinates = notify1.getCoordinates();
-       String[] cord =cordinates.split(",");
+        String[] cord = cordinates.split(",");
         String tempUri;
 
         if (firstTimeEntry == "wrongPinEntry") {
-            String url = "https://www.google.com/maps/search/?api=1&query="+lattitude+"%2C"+longitude;
+            String url = "https://www.google.com/maps/search/?api=1&query=" + lattitude + "%2C" + longitude;
             tempUri = url;
             holder.textViewPublisher.setText(url);
-        }else {
-                   String lattitude = cord[0];
-                   String longitude = cord[1];
-            String url = "https://www.google.com/maps/search/?api=1&query="+lattitude+"%2C"+longitude;
+        } else {
+            String lattitude = cord[0];
+            String longitude = cord[1];
+            String url = "https://www.google.com/maps/search/?api=1&query=" + lattitude + "%2C" + longitude;
             tempUri = url;
             holder.textViewPublisher.setText(url);
         }
-
 
 
         holder.textViewPublisher.setOnClickListener(new View.OnClickListener() {
@@ -108,31 +108,32 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
 
             @Override
             public void onClick(View v) {
-                Dialog dialog = new Dialog(context);
-                dialog.setContentView(R.layout.image_popup_dialog);
-//                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                dialog.setCancelable(true);
-
-                NetworkImageView expandedImageView = dialog.findViewById(R.id.expandedImageView);
-                expandedImageView.setImageUrl(notify1.getImageUrl(), imageLoader);
-
-
-                Thread thread = new Thread(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        try {
-                            Bitmap imageFile = DownloadImage.Companion.mLoad(notify1.getImageUrl(),context);
-                            DownloadImage.Companion.mSaveMediaToStorage(imageFile,context);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-
-                thread.start();
-
-                dialog.show();
+                openImageInNewActivity(notify1.getImageUrl());
+//                Dialog dialog = new Dialog(context);
+//                dialog.setContentView(R.layout.image_popup_dialog);
+////                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+//                dialog.setCancelable(true);
+//
+//                NetworkImageView expandedImageView = dialog.findViewById(R.id.expandedImageView);
+//                expandedImageView.setImageUrl(notify1.getImageUrl(), imageLoader);
+//
+//
+//                Thread thread = new Thread(new Runnable() {
+//
+//                    @Override
+//                    public void run() {
+//                        try {
+//                            Bitmap imageFile = DownloadImage.Companion.mLoad(notify1.getImageUrl(),context);
+//                            DownloadImage.Companion.mSaveMediaToStorage(imageFile,context);
+//                        } catch (Exception e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                });
+//
+//                thread.start();
+//
+//                dialog.show();
 
             }
         });
@@ -141,38 +142,43 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
 
             @Override
             public void onClick(View v) {
-
-                Dialog dialog = new Dialog(context);
-                dialog.setContentView(R.layout.image_popup_dialog);
-//                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                dialog.setCancelable(true);
-
-                NetworkImageView expandedImageView = dialog.findViewById(R.id.expandedImageView);
-               expandedImageView.setImageUrl(notify1.getImageUr2(), imageLoader2);
-
-
-
-                Thread thread = new Thread(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        try {
-
-                            Bitmap imageFile = DownloadImage.Companion.mLoad(notify1.getImageUr2(),context);
-                            DownloadImage.Companion.mSaveMediaToStorage(imageFile,context);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-
-                thread.start();
-
-                dialog.show();
+                openImageInNewActivity(notify1.getImageUr2());
+//                Dialog dialog = new Dialog(context);
+//                dialog.setContentView(R.layout.image_popup_dialog);
+////                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+//                dialog.setCancelable(true);
+//
+//                NetworkImageView expandedImageView = dialog.findViewById(R.id.expandedImageView);
+//                expandedImageView.setImageUrl(notify1.getImageUr2(), imageLoader2);
+//
+//
+//                Thread thread = new Thread(new Runnable() {
+//
+//                    @Override
+//                    public void run() {
+//                        try {
+//
+//                            Bitmap imageFile = DownloadImage.Companion.mLoad(notify1.getImageUr2(), context);
+//                            DownloadImage.Companion.mSaveMediaToStorage(imageFile, context);
+//                        } catch (Exception e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                });
+//
+//                thread.start();
+//
+//                dialog.show();
 
             }
         });
 
+    }
+
+    private void openImageInNewActivity(String imageUrl) {
+        Intent intent = new Intent(context, ImageViewerActivity.class);
+        intent.putExtra(Constants.IMAGE_URL_INTENT, imageUrl);
+        context.startActivity(intent);
     }
 
     @Override
@@ -180,9 +186,9 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
         return notify.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder {
         //Views
-        public NetworkImageView imageView,imageView2;
+        public NetworkImageView imageView, imageView2;
         public TextView textViewName;
         public TextView textViewPublisher;
         public TextView tvDate;
