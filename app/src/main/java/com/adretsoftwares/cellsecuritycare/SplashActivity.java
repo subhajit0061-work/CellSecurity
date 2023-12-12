@@ -8,6 +8,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -22,21 +23,15 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.Toast;
 
-import com.karumi.dexter.Dexter;
-import com.karumi.dexter.MultiplePermissionsReport;
-import com.karumi.dexter.PermissionToken;
-import com.karumi.dexter.listener.PermissionRequest;
-import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
+import com.adretsoftwares.cellsecuritycare.databinding.ActivitySplashBinding;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
 public class SplashActivity extends AppCompatActivity {
@@ -46,20 +41,28 @@ public class SplashActivity extends AppCompatActivity {
     private static final int MAX_ALLOWED_DAYS = 5;
     private boolean flag = false;
 
+    private ActivitySplashBinding binding;
+
     private static final int PERMISSION_REQUEST_CODE = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding = ActivitySplashBinding.inflate(getLayoutInflater());
         context = this;
         preferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
-        View decorView=getWindow().getDecorView();
+        View decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                |View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                |View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                |View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                |View.SYSTEM_UI_FLAG_FULLSCREEN
-                |View.SYSTEM_UI_FLAG_IMMERSIVE);
-        setContentView(R.layout.activity_splash);
+                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_IMMERSIVE);
+        setContentView(binding.getRoot());
+
+        binding.imageView3.setOnClickListener(view -> {
+            checkOverlayPermission();
+        });
 
         String firstLaunchDateStr = preferences.getString(FIRST_LAUNCH_DATE_KEY, null);
 
@@ -82,7 +85,7 @@ public class SplashActivity extends AppCompatActivity {
 //                    Toast.makeText(this, "Notifications service expired.", Toast.LENGTH_SHORT).show();
 //                    finish(); // Close the app
 //                }else {
-                    requestPermissions();
+                requestPermissions();
                 //}
             } catch (ParseException e) {
                 e.printStackTrace();
@@ -124,7 +127,7 @@ public class SplashActivity extends AppCompatActivity {
     private void requestPermissions() {
         String[] permissions = null;
 //      //  Toast.makeText(context,String.valueOf(Build.VERSION.SDK_INT),Toast.LENGTH_LONG).show();
-        if(Build.VERSION.SDK_INT>30){
+        if (Build.VERSION.SDK_INT > 30) {
             permissions = new String[]{Manifest.permission.CAMERA,
                     // below is the list of permissions
                     Manifest.permission.POST_NOTIFICATIONS,
@@ -137,7 +140,7 @@ public class SplashActivity extends AppCompatActivity {
                     Manifest.permission.CAMERA,
                     Manifest.permission.READ_PHONE_STATE,
                     Manifest.permission.MODIFY_PHONE_STATE};
-        }else{
+        } else {
             permissions = new String[]{Manifest.permission.CAMERA,
                     // below is the list of permissions
                     Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -184,7 +187,6 @@ public class SplashActivity extends AppCompatActivity {
         }
         return false;
     }
-
 
 
 //    private void requestPermissions() {
@@ -317,7 +319,7 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-          requestPermissions();
+        requestPermissions();
     }
 
     @Override
