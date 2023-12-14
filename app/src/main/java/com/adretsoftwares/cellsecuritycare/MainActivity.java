@@ -103,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 //                Intent i = new Intent(MainActivity.this, HideApp.class);
 //                startActivity(i);
+                startActivity(new Intent(MainActivity.this, LockAppActivity.class));
             }
         });
         apphide.setOnClickListener(new View.OnClickListener() {
