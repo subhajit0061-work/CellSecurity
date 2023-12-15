@@ -52,6 +52,6 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#474747"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
