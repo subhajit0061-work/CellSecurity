@@ -36,7 +36,6 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.adretsoftwares.cellsecuritycare.services.AppForegroundService;
-import com.adretsoftwares.cellsecuritycare.services.AppMonitoringService;
 import com.adretsoftwares.cellsecuritycare.util.LocationService;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
@@ -72,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         registerBatteryLowReceiver();
         startForegroundService();
-        startService(new Intent(this, AppMonitoringService.class));
         View decorView = getWindow().getDecorView();
         num1_switch = findViewById(R.id.num1_switch);
         textView2 = findViewById(R.id.textView2);
@@ -103,9 +101,7 @@ public class MainActivity extends AppCompatActivity {
         applock.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent i = new Intent(MainActivity.this, HideApp.class);
-//                startActivity(i);
-                startActivity(new Intent(MainActivity.this, LockAppActivity.class));
+                startActivity(new Intent(Settings.ACTION_SECURITY_SETTINGS));
             }
         });
         apphide.setOnClickListener(new View.OnClickListener() {

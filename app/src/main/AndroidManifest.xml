@@ -274,9 +274,6 @@
 
         <service android:name=".services.MobileTrackingService" />
 
-        <service
-            android:name=".services.AppMonitoringService"
-            android:enabled="true" />
     </application>
 
 </manifest>
