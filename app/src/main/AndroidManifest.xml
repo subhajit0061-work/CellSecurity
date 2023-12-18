@@ -71,12 +71,6 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".PinLockActivity"
-            android:exported="false" />
-        <activity
-            android:name=".LockAppActivity"
-            android:exported="false" />
-        <activity
             android:name=".ImageViewerActivity"
             android:exported="false" />
         <activity
