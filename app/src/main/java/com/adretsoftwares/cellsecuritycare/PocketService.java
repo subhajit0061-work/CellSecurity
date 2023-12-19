@@ -19,18 +19,13 @@ import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
 
+import com.adretsoftwares.cellsecuritycare.common.Constants;
+
 public class PocketService extends Service implements SensorEventListener {
-    private SensorManager sensorMan;
     private SensorManager mSensorManager;
-    private Sensor mSensor;
     private Sensor accelerometer;
-    private float[] mGravity;
-    private float mAccel;
-    private float mAccelCurrent;
-    private float mAccelLast;
     Notification _notification;
     public static boolean flag = false;
-    private static final int SENSOR_SENSITIVITY = 4;
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -40,8 +35,8 @@ public class PocketService extends Service implements SensorEventListener {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
+        flag = false;
 
-//        startInForeground();
         if (Build.VERSION.SDK_INT >= 26) {
             String NOTIFICATION_CHANNEL_ID = "example.permanence";
             String channelName = "Background Service";
@@ -53,46 +48,31 @@ public class PocketService extends Service implements SensorEventListener {
             assert manager != null;
             manager.createNotificationChannel(chan);
 
-            NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID);
+            NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, Constants.FOREGROUND_CHANNEL_ID);
             _notification = notificationBuilder.setOngoing(true)
                     .setSmallIcon(R.drawable.notifi)
                     .setContentTitle("App is running in background")
+                    .setContentText("Detecting motion")
                     .setPriority(NotificationManager.IMPORTANCE_MIN)
                     .setCategory(Notification.CATEGORY_SERVICE)
                     .build();
 
-            
 
         }
         if (Build.VERSION.SDK_INT >= 26) {
 
             startForeground(10101, _notification);
         }
-        // Toast.makeText(this, "service Start successfully", Toast.LENGTH_SHORT).show();
 
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         accelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-//                            mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-//                            mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
-        //        sensorMan = (SensorManager) getSystemService(SENSOR_SERVICE);
-        //        accelerometer = sensorMan.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-
-        //        sensorMan.registerListener(this, accelerometer,
-        //                SensorManager.SENSOR_DELAY_UI);
         if (accelerometer != null) {
             mSensorManager.registerListener(PocketService.this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
         } else {
             Toast.makeText(PocketService.this, "Accelerometer not available on this device.", Toast.LENGTH_LONG).show();
             stopSelf();
-            // Log.e("MotionActivity", "Accelerometer not available on this device.");
         }
-//                                                mSensorManager.registerListener(PocketThiefActivity.this, mSensor,
-//                                                        SensorManager.SENSOR_DELAY_NORMAL);
-        //                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//                                startForegroundService(new Intent(PocketThiefActivity.this, PocketService.class));
-//                            } else {
-//                                startService(new Intent(PocketThiefActivity.this, PocketService.class));
-//                            }
+
         Toast.makeText(PocketService.this, "Motion Detection Mode Activated", Toast.LENGTH_SHORT).show();
 
         return START_STICKY;
@@ -101,20 +81,16 @@ public class PocketService extends Service implements SensorEventListener {
     @Override
     public void onSensorChanged(SensorEvent event) {
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER && !flag) {
+            Log.d("alarm", "all good");
             float x = event.values[0];
             float y = event.values[1];
             float z = event.values[2];
 
-            // Calculate the magnitude of acceleration
             double acceleration = Math.sqrt(x * x + y * y + z * z);
 
-            // You can set a threshold for motion detection
             if (acceleration > 10) {
-                Log.d("MotionActivity", "Motion detected!");
                 Intent intent = new Intent();
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                //To play audio on clap
-                //playAudio();
                 flag = true;
                 ComponentName cn = new ComponentName(this, EnterPin.class);
                 intent.setComponent(cn);
@@ -132,8 +108,9 @@ public class PocketService extends Service implements SensorEventListener {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        sensorMan.unregisterListener(this);
         mSensorManager.unregisterListener(this);
+        flag = false;
+        mSensorManager = null;
     }
 
 }

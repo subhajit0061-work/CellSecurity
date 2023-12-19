@@ -239,7 +239,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (checkLocationServices()) {
 //                startActivity(new Intent(MainActivity.this, PocketThiefActivity.class));
-                    Intent i = new Intent(MainActivity.this, WrongPinPassPatternMode.class);
+                    Intent i = new Intent(MainActivity.this, PickPocketActivity.class);
                     i.putExtra("flag", "on");
                     startActivity(i);
                 } else {

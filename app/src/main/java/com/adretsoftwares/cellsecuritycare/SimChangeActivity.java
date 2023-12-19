@@ -105,7 +105,7 @@ public class SimChangeActivity extends AppCompatActivity implements RecyclerView
         });
     }
 
-    private void initRecyclerView() {
+    void initRecyclerView() {
         preferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         if (!preferences.contains("admin") && !preferences.getBoolean("admin", false)) {
             Toast.makeText(this, "Required admin privilege to use this feature", Toast.LENGTH_LONG).show();

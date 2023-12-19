@@ -32,6 +32,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.adretsoftwares.cellsecuritycare.services.PickPocketService;
+
 public class EnterPin extends AppCompatActivity {
     EditText etEnterPin;
     SharedPreferences sharedpreferences;
@@ -96,8 +99,10 @@ public class EnterPin extends AppCompatActivity {
                     mPlayer.stop();
                     //vb.cancel();
                     SharedPreferences.Editor editor = sharedpreferences.edit();
-                    editor.putBoolean("pocketThief",false).commit();
+                    editor.putBoolean("pocketThief",false).apply();
                     flag = false;
+                    stopService(new Intent(EnterPin.this, PocketService.class));
+                    stopService(new Intent(EnterPin.this, PickPocketService.class));
                     startActivity(new Intent(EnterPin.this, MainActivity.class));
                     finish();
                 } else {
