@@ -18,6 +18,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
+
 public class PocketService extends Service implements SensorEventListener {
     private SensorManager sensorMan;
     private SensorManager mSensorManager;
@@ -35,6 +36,7 @@ public class PocketService extends Service implements SensorEventListener {
     public IBinder onBind(Intent intent) {
         return null;
     }
+
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
@@ -53,11 +55,13 @@ public class PocketService extends Service implements SensorEventListener {
 
             NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID);
             _notification = notificationBuilder.setOngoing(true)
+                    .setSmallIcon(R.drawable.notifi)
                     .setContentTitle("App is running in background")
                     .setPriority(NotificationManager.IMPORTANCE_MIN)
                     .setCategory(Notification.CATEGORY_SERVICE)
                     .build();
 
+            
 
         }
         if (Build.VERSION.SDK_INT >= 26) {
@@ -124,6 +128,7 @@ public class PocketService extends Service implements SensorEventListener {
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
     }
+
     @Override
     public void onDestroy() {
         super.onDestroy();

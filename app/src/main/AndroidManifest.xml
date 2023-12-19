@@ -131,9 +131,6 @@
             android:name=".SOS"
             android:exported="false" />
         <activity
-            android:name=".MobileTracking"
-            android:exported="false" />
-        <activity
             android:name=".SimChangeActivity"
             android:exported="false" />
 
