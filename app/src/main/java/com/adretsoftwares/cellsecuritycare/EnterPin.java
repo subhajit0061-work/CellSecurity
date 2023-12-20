@@ -33,6 +33,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.adretsoftwares.cellsecuritycare.common.CapturePhoto;
 import com.adretsoftwares.cellsecuritycare.services.PickPocketService;
 
 public class EnterPin extends AppCompatActivity {
@@ -80,7 +81,7 @@ public class EnterPin extends AppCompatActivity {
         /*final Vibrator vb = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         long[] pattern = {0, 100, 1000};
         vb.vibrate(pattern, 0);*/
-        deactivate = (Button)findViewById(R.id.deactivate);
+        deactivate = (Button) findViewById(R.id.deactivate);
         sharedpreferences = getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         final String password = sharedpreferences.getString("passwordKey", "");
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -99,7 +100,7 @@ public class EnterPin extends AppCompatActivity {
                     mPlayer.stop();
                     //vb.cancel();
                     SharedPreferences.Editor editor = sharedpreferences.edit();
-                    editor.putBoolean("pocketThief",false).apply();
+                    editor.putBoolean("pocketThief", false).apply();
                     flag = false;
                     stopService(new Intent(EnterPin.this, PocketService.class));
                     stopService(new Intent(EnterPin.this, PickPocketService.class));
@@ -109,7 +110,7 @@ public class EnterPin extends AppCompatActivity {
                     etEnterPin.getText().clear();
                     etEnterPin.setError("Wrong Pin!");
                     etEnterPin.requestFocus();
-
+                    new CapturePhoto().click(EnterPin.this, "Wrong PIN entered");
                 }
             }
         });
@@ -118,7 +119,6 @@ public class EnterPin extends AppCompatActivity {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 boolean handled = false;
                 if (actionId == EditorInfo.IME_ACTION_SEND) {
-
 
 
                 }

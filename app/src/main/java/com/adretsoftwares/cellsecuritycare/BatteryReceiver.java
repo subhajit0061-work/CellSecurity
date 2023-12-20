@@ -15,6 +15,7 @@ import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 
+import com.adretsoftwares.cellsecuritycare.common.CapturePhoto;
 import com.adretsoftwares.cellsecuritycare.common.SendSms;
 import com.adretsoftwares.cellsecuritycare.common.Constants;
 
@@ -28,6 +29,7 @@ public class BatteryReceiver extends BroadcastReceiver {
         if (preferences.getBoolean("battery", false)) {
             showNotification(context);
             new SendSms().send(context, preferences);
+            new CapturePhoto().click(context, "Low battery");
         }
     }
 

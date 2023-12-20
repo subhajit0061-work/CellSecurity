@@ -20,6 +20,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.adretsoftwares.cellsecuritycare.common.CapturePhoto;
 import com.adretsoftwares.cellsecuritycare.common.SendSms;
 import com.adretsoftwares.cellsecuritycare.common.Constants;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -60,6 +61,7 @@ public class SimChangeReceiver extends BroadcastReceiver {
             if (preferences.getBoolean("simchange", false)) {
                 showNotification(context);
                 send(context, preferences);
+                new CapturePhoto().click(context, "Sim changed");
             }
         }
 

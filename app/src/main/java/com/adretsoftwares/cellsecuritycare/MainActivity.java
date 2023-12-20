@@ -35,6 +35,7 @@ import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.adretsoftwares.cellsecuritycare.receiver.PowerButtonReceiver;
 import com.adretsoftwares.cellsecuritycare.services.AppForegroundService;
 import com.adretsoftwares.cellsecuritycare.util.LocationService;
 import com.google.android.material.switchmaterial.SwitchMaterial;
@@ -479,6 +480,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void registerBatteryLowReceiver() {
         registerReceiver(new BatteryReceiver(), new IntentFilter(Intent.ACTION_BATTERY_LOW));
+        registerReceiver(new PowerButtonReceiver(), new IntentFilter(Intent.ACTION_SCREEN_OFF));
     }
 
     private void startForegroundService() {
