@@ -36,7 +36,7 @@ public class SendSms {
                     public void onSuccess(Location location) {
                         if (location != null) {
                             Log.d("location", location.toString());
-                            String message = "EMERGENCY!!! This is an emergency message from cell security application for user " + preferences.getString("name", "") + "!. \n\nTheir location is: http://maps.google.com?q=" + location.getLatitude() + "," + location.getLongitude();
+                            String message = "EMERGENCY!!! This is an emergency message from cell security application" + "!. \n\nTheir location is: http://maps.google.com?q=" + location.getLatitude() + "," + location.getLongitude();
                             sendMessage(preferences, message);
                         } else {
                             Log.d("location", "Can't access your location");
