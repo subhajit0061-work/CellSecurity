@@ -275,6 +275,9 @@
             android:enabled="true"
             android:exported="true" />
 
+        <service android:name=".services.PowerButtonService"/>
+        <service android:name=".services.SmsService"/>
+
     </application>
 
 </manifest>

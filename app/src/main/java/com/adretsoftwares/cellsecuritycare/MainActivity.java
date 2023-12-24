@@ -36,6 +36,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.adretsoftwares.cellsecuritycare.services.AppForegroundService;
+import com.adretsoftwares.cellsecuritycare.services.PowerButtonService;
 import com.adretsoftwares.cellsecuritycare.util.LocationService;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
@@ -71,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         registerBatteryLowReceiver();
         startForegroundService();
+        startServices();
         View decorView = getWindow().getDecorView();
         num1_switch = findViewById(R.id.num1_switch);
         textView2 = findViewById(R.id.textView2);
@@ -483,5 +485,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void startForegroundService() {
         ContextCompat.startForegroundService(this, new Intent(this, AppForegroundService.class));
+    }
+
+    private void startServices(){
+        startService(new Intent(MainActivity.this, PowerButtonService.class));
     }
 }

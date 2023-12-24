@@ -21,26 +21,16 @@ public class SendSms {
                 .getFusedLocationProviderClient(context);
 
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
             return;
         }
         fusedLocationClient.getLastLocation()
-                .addOnSuccessListener(new OnSuccessListener<Location>() {
-                    @Override
-                    public void onSuccess(Location location) {
-                        if (location != null) {
-                            Log.d("location", location.toString());
-                            String message = "EMERGENCY!!! This is an emergency message from cell security application" + "!. \n\nTheir location is: http://maps.google.com?q=" + location.getLatitude() + "," + location.getLongitude();
-                            sendMessage(preferences, message);
-                        } else {
-                            Log.d("location", "Can't access your location");
-                        }
+                .addOnSuccessListener(location -> {
+                    if (location != null) {
+                        Log.d("location", location.toString());
+                        String message = "EMERGENCY!!! This is an emergency message from cell security application" + "!. \n\nTheir location is: http://maps.google.com?q=" + location.getLatitude() + "," + location.getLongitude();
+                        sendMessage(preferences, message);
+                    } else {
+                        Log.d("location", "Can't access your location");
                     }
                 });
     }
